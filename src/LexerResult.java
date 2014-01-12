@@ -1,4 +1,8 @@
-
+/**
+ * a result from lexing, obviously.
+ * identifies the type of token (tokenName) and it's content.
+ *
+ */
 public class LexerResult {
 	protected String content;
 	protected String tokenName;

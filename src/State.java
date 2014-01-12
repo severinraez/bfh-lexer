@@ -1,7 +1,10 @@
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * each state know what tokenName is assigned to it.
+ * end states are valid states to abort further lexing and create a token
+ */
 public class State {
 	private boolean isEnd;
 	private String tokenName;
@@ -25,17 +28,21 @@ public class State {
 		return feed(str, "");
 	}	
 	
+	/**
+	 * tries to identify a token.
+	 * @param str the string left to parse
+	 * @param consumed the chars already consumed
+	 * @return
+	 */
 	public LexerResult feed(String str, String consumed) {
 		if(str.trim().isEmpty()) { //the trim is a little hack for trailing whitespaces
-			if(isEnd) {
+			if(isEnd)
 				return new LexerResult(consumed, tokenName);
-			}
-			else {
+			else
 				return null; //error while parsing!
-			}
 		}
 		String nextChar = str.substring(0, 1);
-		if(isEnd && transitions.isEmpty()) {
+		if(isEnd && transitions.isEmpty()) { //we're in an end state, return the found token
 			return new LexerResult(consumed, tokenName);
 		}
 		else {
@@ -48,6 +55,9 @@ public class State {
 				}
 			}			
 		}
-		return new LexerResult(consumed, tokenName); //we did a failed lookahed
+		if(isEnd)
+		    return new LexerResult(consumed, tokenName); //all transitions failed, fall back to consumed chars (lookahead behaviour)
+		else
+			return null; //automaton finished in non-end state
 	}
 }
