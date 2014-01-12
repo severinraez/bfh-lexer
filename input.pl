@@ -1,7 +1,34 @@
-X,Y
-Xy
-[]
-/* t */
+%%%%%%%%% Simple Prolog Planner %%%%%%%%
+%%%
+%%% This is one of the example programs from the textbook:
+%%%
+%%% Artificial Intelligence: 
+%%% Structures and strategies for complex problem solving
+%%%
+%%% by George F. Luger and William A. Stubblefield
+%%% 
+%%% Corrections by Christopher E. Davis (chris2d@cs.unm.edu)
+%%%
+%%% These programs are copyrighted by Benjamin/Cummings Publishers.
+%%%
+%%% We offer them for use, free of charge, for educational purposes only.
+%%%
+%%% Disclaimer: These programs are provided with no warranty whatsoever as to
+%%% their correctness, reliability, or any other property.  We have written 
+%%% them for specific educational purposes, and have made no effort
+%%% to produce commercial quality computer programs.  Please do not expect 
+%%% more of them then we have intended.
+%%%
+%%% This code has been tested with SWI-Prolog (Multi-threaded, Version 5.2.13)
+%%% and appears to function as intended.
+
+
+%%%%%%%%%%%%%%%%%%%% stack operations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % These predicates give a simple, list based implementation of stacks
+
+    % empty stack generates/tests an empty stack
+
 member(X,[X|_]).
 member(X,[_|T]):-member(X,T).
 
