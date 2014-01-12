@@ -39,7 +39,7 @@ public class State {
 			if(t.applicable(nextChar)) { //transition would fire
 				LexerResult result = t.getTargetState().feed(str.substring(1), consumed + nextChar);
 				if(result != null) { //token parsed, return it
-					if(result.getTokenName() == "fallback"); //lookahead failed
+					if(result.getTokenName() == "fallback") //lookahead failed
    						result.setTokenName(tokenName);
 					return result;
 				}

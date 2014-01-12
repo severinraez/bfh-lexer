@@ -93,7 +93,6 @@ public class Main {
         
         String line;
         while ((line = br.readLine()) != null) {
-        	System.out.println("tokenizing " + line);
         	int i = 0; 
         	while(i < line.length()) {
         		String toParse = line.substring(i);
