@@ -34,8 +34,7 @@ public class Main {
         State multiLineCommentEnd2 = new State(true, "comment");
         
         startState.addTransition(new Transition(multiLineCommentBegin1, "/"));
-        multiLineCommentBegin1.addTransition(new Transition(multiLineCommentBegin2, "\\*"));
-        multiLineCommentBegin2.addTransition(new Transition(multiLineComment, ".*"));
+        multiLineCommentBegin1.addTransition(new Transition(multiLineComment, "\\*"));
         multiLineComment.addTransition(new Transition(multiLineCommentEnd1, "\\*"));
         multiLineCommentEnd1.addTransition(new Transition(multiLineCommentEnd2, "/"));
         multiLineComment.addTransition(new Transition(multiLineComment, ".*"));
@@ -45,11 +44,9 @@ public class Main {
         startState.addTransition(new Transition(dot, "\\."));
               
         //atoms (constants)
-        State atomBegin = new State(true, "constant");
-        startState.addTransition(new Transition(atomBegin, "[a-z]"));
         State atom = new State(true, "constant");
-        atomBegin.addTransition(new Transition(atom, "[a-zA-Z0-9]"));
-        atom.addTransition(new Transition(atom, "[a-zA-Z0-1]"));
+        startState.addTransition(new Transition(atom, "[a-z]"));
+        atom.addTransition(new Transition(atom, "[a-zA-Z0-9]"));
                 
         //numbers(constants)
         State number = new State(true, "constant");
@@ -62,10 +59,8 @@ public class Main {
         specialCharAtom.addTransition(new Transition(specialCharAtom, "[:-]"));
         
         //variables
-        State variableBegin = new State(true, "variable");
-        startState.addTransition(new Transition(variableBegin, "[A-Z]"));
         State variable = new State(true, "variable");
-        variableBegin.addTransition(new Transition(variable, "[A-Za-z0-9]"));
+        startState.addTransition(new Transition(variable, "[A-Z]"));
         variable.addTransition(new Transition(variable, "[A-Za-z0-9]"));
         
         //anonymous variables (variables)
