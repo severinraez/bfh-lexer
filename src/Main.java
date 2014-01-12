@@ -98,14 +98,14 @@ public class Main {
         		String toParse = line.substring(i);
         		LexerResult r = startState.feed(toParse);
         	        		        		
-        		if(r == null || r.getTokenName() == "fallback") {
+        		if(r == null) {
         			System.out.println("Could not tokenize..." + line.substring(i));
         			System.exit(1);
         		}
        			else {
-       				//if(r.getTokenName() != "comment" && r.getTokenName() != "nothing") {
+       				if(r.getTokenName() != "comment" && r.getTokenName() != "nothing") {
        					parsed.add(r);
-       				//}       		
+       				}       		
        				i += r.getContent().length();
        				
           			//hack for trailing whitespaces
@@ -119,7 +119,7 @@ public class Main {
         }
         	
       	for(LexerResult r : parsed) {
-       		System.out.println(r.getContent() + " - " + r.getTokenName());
+       		System.out.println(r.getContent().trim() + " - " + r.getTokenName());
        	}
 	}
 }

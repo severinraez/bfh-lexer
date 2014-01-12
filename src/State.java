@@ -43,13 +43,11 @@ public class State {
 				if(t.applicable(nextChar)) { //transition would fire
 					LexerResult result = t.getTargetState().feed(str.substring(1), consumed + nextChar);
 					if(result != null) { //token parsed, return it
-						if(result.getTokenName() == "fallback") //lookahead failed
-	   						result.setTokenName(tokenName);
 						return result;
 					}
 				}
 			}			
 		}
-		return new LexerResult(consumed, "fallback"); //we did a failed lookahed
+		return new LexerResult(consumed, tokenName); //we did a failed lookahed
 	}
 }

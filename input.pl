@@ -1,3 +1,5 @@
+X,Y
+Xy
 []
 /* t */
 member(X,[X|_]).
